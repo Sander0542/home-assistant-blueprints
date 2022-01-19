@@ -1,0 +1,30 @@
+blueprint:
+  name: Television Light
+  description: Turn off a light when the television starts playing.
+  domain: automation
+  source_url: https://github.com/Sander0542/home-assistant-blueprints/blob/main/automations/tv_light.yaml
+  input:
+    television_entity:
+      name: Media Player
+      selector:
+        entity:
+          domain: media_player
+          device_class: tv
+    light_target:
+      name: Light
+      selector:
+        target:
+          entity:
+            domain: light
+
+mode: restart
+max_exceeded: silent
+
+trigger:
+  platform: state
+  entity_id: !input television_entity
+  to: "playing"
+
+action:
+  - service: light.turn_off
+    target: !input light_target
