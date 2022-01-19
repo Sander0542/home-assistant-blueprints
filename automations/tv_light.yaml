@@ -4,12 +4,11 @@ blueprint:
   domain: automation
   source_url: https://github.com/Sander0542/home-assistant-blueprints/blob/main/automations/tv_light.yaml
   input:
-    television_entity:
-      name: Media Player
+    television_target:
+      name: Television
       selector:
         entity:
           domain: media_player
-          device_class: tv
     light_target:
       name: Light
       selector:
@@ -22,7 +21,7 @@ max_exceeded: silent
 
 trigger:
   platform: state
-  entity_id: !input television_entity
+  entity_id: !input television_target
   to: "playing"
 
 action:
