@@ -1,2 +1,2 @@
-# home-assistant-blueprints
+# Home Assistant Blueprints
 Blueprint for Home Assistant
