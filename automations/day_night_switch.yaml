@@ -2,7 +2,7 @@ blueprint:
   name: Day Night Switch
   description: Toggle a switch based on the position of the sun.
   domain: automation
-  source_url: https://github.com/Sander0542/home-assistant-blueprints/blob/main/automations/day_light_switch.yaml
+  source_url: https://github.com/Sander0542/home-assistant-blueprints/blob/main/automations/day_night_switch.yaml
   input:
     sunrise_offset:
       name: Sunrise Offset
