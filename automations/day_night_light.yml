@@ -8,29 +8,33 @@ blueprint:
       name: Sunrise Offset
       default: 0
       selector:
-        text: {}
+        text:
     sunset_offset:
       name: Sunset Offset
       default: 0
       selector:
-        text: {}
+        text:
     light_target:
       name: Light
       selector:
         target:
           entity:
             domain: light
+
 mode: restart
 max_exceeded: silent
+
 trigger:
-- platform: sun
-  event: sunrise
-  offset: !input 'sunrise_offset'
-- platform: sun
-  event: sunset
-  offset: !input 'sunset_offset'
+  - platform: sun
+    event: sunrise
+    offset: !input 'sunrise_offset'
+  - platform: sun
+    event: sunset
+    offset: !input 'sunset_offset'
+
 action:
-- variables:
-    service: '{% if trigger.event == ''sunrise'' %}light.turn_off{% else %}light.turn_on{%endif %}'
-- service: '{{ service }}'
-  target: !input 'light_target'
+  - variables:
+      service: >-
+        {% if trigger.event == 'sunrise' %}light.turn_off{% else %}light.turn_on{% endif %}
+  - service: '{{ service }}'
+    target: !input 'light_target'
